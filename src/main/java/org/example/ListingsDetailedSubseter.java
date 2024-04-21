@@ -14,14 +14,26 @@ import org.apache.hadoop.mapreduce.lib.output.TextOutputFormat;
 import java.io.IOException;
 
 public class ListingsDetailedSubseter {
-    public static final int id = 0;
 
-    private static class Map extends Mapper<LongWritable, Object, Text, Text> {
+    private static class Map extends Mapper<LongWritable, Text, Text, Text> {
         @Override
-        public void map(LongWritable text, Object value, Context context) throws IOException, InterruptedException {
-            String line = value.toString();
-            String neibourhood = "Other";
+        public void map(LongWritable text, Text value, Context context) throws IOException, InterruptedException {
+            String line = new String(value.toString());
 
+            StringBuilder id = new StringBuilder();
+            int count = 0;
+            while (!id.toString().endsWith(",") && line.length() > count && count < 100) {
+                id.append(line.substring(count, count + 1));
+                count += 1;
+            }
+            String idStr = id.toString().replace(",", "");
+            try {
+                Integer.parseInt(idStr);
+            } catch (Exception e) {
+                idStr = "";
+            }
+
+            String neibourhood = "Other";
             if (line.contains(",Manhattan,")) neibourhood = "Manhattan";
             else if (line.contains(",Brooklyn,")) neibourhood = "Brooklyn";
             else if (line.contains(",Queens,")) neibourhood =  "Queens";
@@ -31,7 +43,10 @@ public class ListingsDetailedSubseter {
             String roomType = "Other";
             if (line.contains(",Private room,")) roomType = "Private room";
             else if (line.contains(",Entire home/apt,")) roomType = "Entire home/apt";
-            context.write(new Text(String.valueOf(id)), new Text(neibourhood + "," + roomType));
+
+            if (!idStr.isEmpty()) {
+                context.write(new Text(idStr), new Text(neibourhood + "," + roomType));
+            }
         }
     }
 
