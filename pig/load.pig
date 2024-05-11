@@ -1,6 +1,7 @@
 -- calendar
 data_calendar = LOAD '/new-york/calendar.csv' USING PigStorage(',') AS (
-listing_id: chararray, date: chararray, available: chararray, price: chararray, adjusted_price: chararray, minimum_nights: chararray, maximum_nights: chararray
+    listing_id: chararray, date: chararray, available: chararray, price: chararray, adjusted_price: chararray,
+    minimum_nights: chararray, maximum_nights: chararray
 );
 DESCRIBE data_calendar;
 data_calendar = FOREACH data_calendar GENERATE listing_id, date, price;
@@ -47,7 +48,9 @@ data_events_head = LIMIT data_events 10;
 DUMP data_events_head;
 
 -- weather data
-data_weather = LOAD '/new-york/weather_data.csv' USING PigStorage(',') AS (date: chararray, temperature: double, weather_conditions: chararray);
+data_weather = LOAD '/new-york/weather_data.csv' USING PigStorage(',') AS (
+    date: chararray, temperature: double, weather_conditions: chararray
+);
 DESCRIBE data_weather;
 data_weather_head = LIMIT data_weather 10;
 DUMP data_weather_head;
@@ -61,5 +64,5 @@ DESCRIBE data_listing_detailed;
 DUMP data_listing_detailed_head;
 DESCRIBE data_events;
 DUMP data_events_head;
-data_weather = LOAD '/new-york/weather_data.csv' USING PigStorage(',') AS (date: chararray, temperature: double, weather_conditions: chararray);
+DESCRIBE data_weather;
 DUMP data_weather_head;
