@@ -13,4 +13,6 @@ data_events_distinct = DISTINCT data_events;
 --events_count = FOREACH data_events_group GENERATE COUNT(data_events) AS events_count;
 --events_distinct_count = FOREACH data_events_distinct_group GENERATE COUNT(data_events_distinct) AS events_distinct_count;
 
+RMF /new-york/pig/events_filtered.csv ;
+
 STORE data_events_distinct INTO '/new-york/pig/events_filtered.csv' USING PigStorage(',');
