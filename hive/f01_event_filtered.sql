@@ -1,7 +1,6 @@
 use nyc_data;
 
-DROP TABLE IF EXISTS nyc_events_raw;
-CREATE EXTERNAL TABLE nyc_events_raw
+CREATE EXTERNAL TABLE IF NOT EXISTS nyc_events_raw
 (
     event_id          FLOAT,
     EventName         STRING,
