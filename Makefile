@@ -5,3 +5,7 @@ send-to-lab:
 send-pig-to-lab:
 	scp -r pig/* adrian@172.26.87.135:/home/adrian/projects/pdzd/pig/
 	ssh adrian@172.26.87.135 docker cp /home/adrian/projects/pdzd/pig/ master:/tmp/
+
+send-hive-to-lab:
+	scp -r hive/* adrian@172.26.87.135:/home/adrian/projects/pdzd/hive/
+	ssh adrian@172.26.87.135 docker cp /home/adrian/projects/pdzd/hive/ master:/tmp/
