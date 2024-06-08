@@ -37,8 +37,6 @@ merged_data = JOIN data_calendar BY listing_id, data_listing_detailed BY id;
 merged_data = FOREACH merged_data GENERATE data_calendar::listing_id, data_calendar::date, data_calendar::price,
     data_listing_detailed::neighbourhood_group_cleansed, data_listing_detailed::room_type;
 
-merged_data_head = LIMIT merged_data 10;
-DUMP merged_data_head;
 
 RMF /new-york/pig/etap1.csv ;
 STORE merged_data INTO '/new-york/pig/etap1.csv' USING PigStorage(',');

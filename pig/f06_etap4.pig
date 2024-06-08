@@ -21,8 +21,5 @@ data_phase4 = FOREACH joined_data GENERATE
     is_weekend,
     (holiday_dates::date IS NOT NULL ? true : false) AS is_holiday;
 
---data_phase4_head = LIMIT data_phase4 100;
---DUMP data_phase4_head;
-
 RMF /new-york/pig/etap4.csv ;
 STORE data_phase4 INTO '/new-york/pig/etap4.csv' USING PigStorage(',');

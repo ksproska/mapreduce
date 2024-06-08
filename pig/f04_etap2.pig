@@ -14,8 +14,5 @@ data_phase1 = FOREACH data_phase1 GENERATE
 
 data_phase1 = FILTER data_phase1 BY average_price > 0.0;
 
---data_phase1_head = LIMIT data_phase1 10;
---DUMP data_phase1_head;
-
 RMF /new-york/pig/etap2.csv ;
 STORE data_phase1 INTO '/new-york/pig/etap2.csv' USING PigStorage(',');
