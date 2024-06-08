@@ -1,6 +1,5 @@
 use nyc_data;
 
-DROP TABLE IF EXISTS calendar_data;
 CREATE EXTERNAL TABLE IF NOT EXISTS calendar_data
 (
     listing_id     STRING,
@@ -22,7 +21,7 @@ CREATE EXTERNAL TABLE IF NOT EXISTS calendar_data
 
 LOAD DATA INPATH '/new-york/calendar.csv' OVERWRITE INTO TABLE calendar_data;
 
-CREATE EXTERNAL TABLE IF NOT EXISTS listings_detailed
+CREATE EXTERNAL TABLE listings_detailed
 (
     id                                           STRING,
     listing_url                                  STRING,
@@ -123,7 +122,6 @@ SELECT id, neighbourhood_group_cleansed, room_type
 FROM listings_detailed
 WHERE id IS NOT NULL;
 
-
 CREATE TABLE etap1_data AS
 SELECT c.listing_id,
        c.calendar_date,
@@ -132,4 +130,3 @@ SELECT c.listing_id,
        l.room_type
 FROM filtered_calendar c
          JOIN filtered_listings_detailed l ON c.listing_id = l.id;
-

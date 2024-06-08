@@ -22,5 +22,3 @@ CREATE TABLE etap2_data AS
 SELECT *
 FROM grouped_data
 WHERE average_price > 0.0;
-
-

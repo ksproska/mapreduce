@@ -1,6 +1,6 @@
 use nyc_data;
 
-CREATE EXTERNAL TABLE IF NOT EXISTS nyc_events_raw
+CREATE EXTERNAL TABLE nyc_events_raw
 (
     event_id          FLOAT,
     EventName         STRING,
@@ -26,7 +26,6 @@ CREATE EXTERNAL TABLE IF NOT EXISTS nyc_events_raw
 
 LOAD DATA INPATH '/new-york/NYC_events_filtered.csv' OVERWRITE INTO TABLE nyc_events_raw;
 
-DROP TABLE IF EXISTS nyc_events_filtered;
 CREATE TABLE nyc_events_filtered AS
 SELECT DISTINCT event_id, start_date, event_borough
 FROM nyc_events_raw;

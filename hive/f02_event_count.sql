@@ -6,7 +6,7 @@ SELECT split(start_date, ' ')[0] AS event_date,
        1                         AS count
 FROM nyc_events_filtered;
 
-DROP TABLE IF EXISTS events_summed;
+
 CREATE TABLE events_summed AS
 SELECT event_date,
        event_borough,
