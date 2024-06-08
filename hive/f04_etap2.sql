@@ -23,4 +23,4 @@ SELECT *
 FROM grouped_data
 WHERE average_price > 0.0;
 
-SELECT * FROM etap2_data;
+

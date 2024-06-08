@@ -18,17 +18,15 @@ CREATE EXTERNAL TABLE IF NOT EXISTS nyc_events_raw
     ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.OpenCSVSerde'
         WITH SERDEPROPERTIES (
         "separatorChar" = ",",
-        "quoteChar"     = "\"",
-        "escapeChar"    = "\\"
+        "quoteChar" = "\"",
+        "escapeChar" = "\\"
         )
     STORED AS TEXTFILE
-    TBLPROPERTIES ("skip.header.line.count"="1");
+    TBLPROPERTIES ("skip.header.line.count" = "1");
 
 LOAD DATA INPATH '/new-york/NYC_events_filtered.csv' OVERWRITE INTO TABLE nyc_events_raw;
-SELECT * FROM nyc_events_raw;
 
 DROP TABLE IF EXISTS nyc_events_filtered;
 CREATE TABLE nyc_events_filtered AS
 SELECT DISTINCT event_id, start_date, event_borough
 FROM nyc_events_raw;
-SELECT * FROM nyc_events_filtered LIMIT 10;

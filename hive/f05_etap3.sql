@@ -13,4 +13,3 @@ FROM etap2_data f
          f.calendar_date = e.event_date AND
          f.neighbourhood_group_cleansed = e.event_borough;
 
-SELECT * FROM etap3_data;

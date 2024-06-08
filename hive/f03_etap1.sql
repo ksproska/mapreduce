@@ -4,7 +4,7 @@ DROP TABLE IF EXISTS calendar_data;
 CREATE EXTERNAL TABLE IF NOT EXISTS calendar_data
 (
     listing_id     STRING,
-    calendar_date           STRING,
+    calendar_date  STRING,
     available      STRING,
     price          STRING,
     adjusted_price STRING,
@@ -14,14 +14,13 @@ CREATE EXTERNAL TABLE IF NOT EXISTS calendar_data
     ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.OpenCSVSerde'
         WITH SERDEPROPERTIES (
         "separatorChar" = ",",
-        "quoteChar"     = "\"",
-        "escapeChar"    = "\\"
+        "quoteChar" = "\"",
+        "escapeChar" = "\\"
         )
     STORED AS TEXTFILE
-    TBLPROPERTIES ("skip.header.line.count"="1");
+    TBLPROPERTIES ("skip.header.line.count" = "1");
 
 LOAD DATA INPATH '/new-york/calendar.csv' OVERWRITE INTO TABLE calendar_data;
-SELECT * FROM calendar_data;
 
 CREATE EXTERNAL TABLE IF NOT EXISTS listings_detailed
 (
@@ -104,14 +103,13 @@ CREATE EXTERNAL TABLE IF NOT EXISTS listings_detailed
     ROW FORMAT SERDE 'org.apache.hadoop.hive.serde2.OpenCSVSerde'
         WITH SERDEPROPERTIES (
         "separatorChar" = ",",
-        "quoteChar"     = "\"",
-        "escapeChar"    = "\\"
+        "quoteChar" = "\"",
+        "escapeChar" = "\\"
         )
     STORED AS TEXTFILE
-    TBLPROPERTIES ("skip.header.line.count"="1");
+    TBLPROPERTIES ("skip.header.line.count" = "1");
 
 LOAD DATA INPATH '/new-york/listings_detailed_cleaned.csv' OVERWRITE INTO TABLE listings_detailed;
-SELECT * FROM listings_detailed;
 
 
 CREATE OR REPLACE VIEW filtered_calendar AS
@@ -135,4 +133,3 @@ SELECT c.listing_id,
 FROM filtered_calendar c
          JOIN filtered_listings_detailed l ON c.listing_id = l.id;
 
-SELECT * FROM etap1_data;

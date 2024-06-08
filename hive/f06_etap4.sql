@@ -13,8 +13,6 @@ CREATE EXTERNAL TABLE IF NOT EXISTS holiday_dates
     STORED AS TEXTFILE;
 LOAD DATA INPATH '/new-york/dates.csv' OVERWRITE INTO TABLE holiday_dates;
 
-SELECT * FROM holiday_dates;
-
 CREATE TABLE etap4_data AS
 SELECT e.calendar_date,
        e.neighbourhood_group_cleansed,
@@ -29,4 +27,3 @@ FROM etap3_data e
          LEFT JOIN
      holiday_dates h ON e.calendar_date = h.holiday_date;
 
-SELECT * FROM etap4_data;
