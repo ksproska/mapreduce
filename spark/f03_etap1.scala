@@ -1,5 +1,8 @@
 import org.apache.spark.sql.types._
 import org.apache.spark.sql.functions._
+import scala.concurrent.duration._
+
+val before = System.currentTimeMillis;
 
 val calendarSchema = StructType(Array(
   StructField("listing_id", StringType, true),
@@ -100,3 +103,7 @@ val filteredListingsDetailed = listingsDetailed.filter("id IS NOT NULL").select(
 val etap1Data = filteredCalendar.alias("c").join(filteredListingsDetailed.alias("l"), $"c.listing_id" === $"l.id").select($"c.listing_id", $"c.calendar_date", $"c.price", $"l.neighbourhood_group_cleansed", $"l.room_type")
 
 etap1Data.write.format("hive").mode("overwrite").saveAsTable("etap1_data")
+
+val totalTime = (System.currentTimeMillis - before) / 1000
+System.out.println(s"Elapsed (sec): $totalTime")
+System.exit(0)

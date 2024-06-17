@@ -1,6 +1,8 @@
 import org.apache.spark.sql.functions._
 import org.apache.spark.sql.types._
 
+val before = System.currentTimeMillis;
+
 val schema = StructType(Array(
   StructField("event_id", FloatType, true),
   StructField("EventName", StringType, true),
@@ -21,3 +23,7 @@ val rawData = spark.read.format("csv").option("header", "true").option("sep", ",
 val filteredEvents = rawData.select("event_id", "start_date", "event_borough").distinct()
 
 filteredEvents.write.format("hive").mode("overwrite").saveAsTable("nyc_events_filtered")
+
+val totalTime = (System.currentTimeMillis - before) / 1000
+System.out.println(s"Elapsed (sec): $totalTime")
+System.exit(0)
