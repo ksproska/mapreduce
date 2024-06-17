@@ -105,7 +105,7 @@ val etap1Data = filteredCalendar.alias("c").join(filteredListingsDetailed.alias(
 etap1Data.write.format("hive").mode("overwrite").saveAsTable("etap1_data")
 
 val totalTime = (System.currentTimeMillis - before) / 1000
-System.out.println(s"Elapsed (sec): $totalTime")
+System.out.println(s"f03_etap1 - Elapsed (sec): $totalTime")
 etap1Data.show
 
 System.exit(0)

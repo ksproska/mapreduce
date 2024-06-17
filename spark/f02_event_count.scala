@@ -11,7 +11,7 @@ val eventsSummed = eventsTransformed.groupBy("event_date", "event_borough").agg(
 eventsSummed.write.format("hive").mode("overwrite").saveAsTable("events_summed")
 
 val totalTime = (System.currentTimeMillis - before) / 1000
-System.out.println(s"Elapsed (sec): $totalTime")
+System.out.println(s"f02_event_count - Elapsed (sec): $totalTime")
 eventsSummed.show
 
 System.exit(0)

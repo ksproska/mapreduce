@@ -18,7 +18,7 @@ val etap4Data = etap3Data.withColumn("calendar_date", to_date(col("calendar_date
 etap4Data.write.format("hive").mode("overwrite").saveAsTable("etap4_data")
 
 val totalTime = (System.currentTimeMillis - before) / 1000
-System.out.println(s"Elapsed (sec): $totalTime")
+System.out.println(s"f06_etap4 - Elapsed (sec): $totalTime")
 etap4Data.show
 
 System.exit(0)

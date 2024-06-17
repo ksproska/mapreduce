@@ -25,7 +25,7 @@ val filteredEvents = rawData.select("event_id", "start_date", "event_borough").d
 filteredEvents.write.format("hive").mode("overwrite").saveAsTable("nyc_events_filtered")
 
 val totalTime = (System.currentTimeMillis - before) / 1000
-System.out.println(s"Elapsed (sec): $totalTime")
+System.out.println(s"f01_event_filtered - Elapsed (sec): $totalTime")
 filteredEvents.show
 
 System.exit(0)

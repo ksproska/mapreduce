@@ -11,7 +11,7 @@ val etap3Data = etap2Data.alias("f").join(eventsSummed.alias("e"), col("f.calend
 etap3Data.write.format("hive").mode("overwrite").saveAsTable("etap3_data")
 
 val totalTime = (System.currentTimeMillis - before) / 1000
-System.out.println(s"Elapsed (sec): $totalTime")
+System.out.println(s"f05_etap3 - Elapsed (sec): $totalTime")
 etap3Data.show
 
 System.exit(0)
