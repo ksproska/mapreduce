@@ -18,7 +18,7 @@ val schema = StructType(Array(
   StructField("PolicePrecinct", StringType, true)
 ))
 
-val rawData = spark.read.format("csv").option("header", "true").option("sep", ",").option("quote", "\"").option("escape", "\\").schema(schema).load("/new-york/NYC_events_filtered.csv")
+val rawData = spark.read.format("csv").option("header", "true").option("sep", ",").option("quote", "\"").option("escape", "\"").schema(schema).load("/new-york/NYC_events_filtered.csv")
 
 val filteredEvents = rawData.select("event_id", "start_date", "event_borough").distinct()
 
