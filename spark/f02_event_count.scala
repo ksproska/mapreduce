@@ -12,4 +12,6 @@ eventsSummed.write.format("hive").mode("overwrite").saveAsTable("events_summed")
 
 val totalTime = (System.currentTimeMillis - before) / 1000
 System.out.println(s"Elapsed (sec): $totalTime")
+eventsSummed.show
+
 System.exit(0)

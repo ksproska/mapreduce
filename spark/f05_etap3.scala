@@ -12,4 +12,6 @@ etap3Data.write.format("hive").mode("overwrite").saveAsTable("etap3_data")
 
 val totalTime = (System.currentTimeMillis - before) / 1000
 System.out.println(s"Elapsed (sec): $totalTime")
+etap3Data.show
+
 System.exit(0)

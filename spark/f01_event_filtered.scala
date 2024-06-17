@@ -26,4 +26,6 @@ filteredEvents.write.format("hive").mode("overwrite").saveAsTable("nyc_events_fi
 
 val totalTime = (System.currentTimeMillis - before) / 1000
 System.out.println(s"Elapsed (sec): $totalTime")
+filteredEvents.show
+
 System.exit(0)
