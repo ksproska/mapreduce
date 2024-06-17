@@ -14,7 +14,7 @@ val calendarSchema = StructType(Array(
   StructField("maximum_nights", StringType, true)
 ))
 
-val calendarData = spark.read.format("csv").option("header", "true").option("sep", ",").option("quote", "\"").option("escape", "\\").schema(calendarSchema).load("/new-york/calendar.csv")
+val calendarData = spark.read.format("csv").option("header", "true").option("sep", ",").option("quote", "\"").option("escape", "\"").schema(calendarSchema).load("/new-york/calendar.csv")
 
 val listingsDetailedSchema = StructType(Array(
   StructField("id", StringType, true),
@@ -94,7 +94,7 @@ val listingsDetailedSchema = StructType(Array(
   StructField("reviews_per_month", StringType, true),
 ))
 
-val listingsDetailed = spark.read.format("csv").option("header", "true").option("sep", ",").option("quote", "\"").option("escape", "\\").schema(listingsDetailedSchema).load("/new-york/listings_detailed_cleaned.csv")
+val listingsDetailed = spark.read.format("csv").option("header", "true").option("sep", ",").option("quote", "\"").option("escape", "\"").schema(listingsDetailedSchema).load("/new-york/listings_detailed_cleaned.csv")
 
 val filteredCalendar = calendarData.filter("listing_id IS NOT NULL").select("listing_id", "calendar_date", "price")
 
