@@ -9,9 +9,7 @@ val holidayDatesSchema = StructType(Array(
   StructField("holiday_date", StringType, true)
 ))
 
-val holidayDates = spark.read.format("csv").option("header", "true").option("sep", ",").option("quote", "\"").option("escape", "\"").schema(holidayDatesSchema).load("/new-york/dates.csv")
-
-holidayDates.write.format("hive").option("path", "/hive/path/for/holiday_dates").mode("overwrite").saveAsTable("nyc_data.holiday_dates")
+val holidayDates = spark.read.format("csv").option("header", "false").option("sep", ",").option("quote", "\"").option("escape", "\"").schema(holidayDatesSchema).load("/new-york/dates.csv")
 
 val etap3Data = spark.table("nyc_data.etap3_data")
 
