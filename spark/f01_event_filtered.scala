@@ -18,8 +18,6 @@ val schema = StructType(Array(
 
 val rawData = spark.read.format("csv").option("header", "true").option("sep", ",").option("quote", "\"").option("escape", "\\").schema(schema).load("/new-york/NYC_events_filtered.csv")
 
-rawData.createOrReplaceTempView("nyc_events_raw")
-
 val filteredEvents = rawData.select("event_id", "start_date", "event_borough").distinct()
 
 filteredEvents.write.format("hive").mode("overwrite").saveAsTable("nyc_events_filtered")
